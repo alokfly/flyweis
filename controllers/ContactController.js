@@ -18,7 +18,7 @@ module.exports.addContactData = async (req, res) => {
       from: "info@flyweis.technology",
       to: "info@flyweis.technology",
       subject: `${email} want to contact you`,
-      text: subject,
+      text: `Name: ${name}, Phone: ${phone}, Subject: ${subject}`,
     };
 
     transporter.sendMail(mail, function (error, info) {

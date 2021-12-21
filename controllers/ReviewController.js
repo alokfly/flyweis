@@ -18,7 +18,7 @@ module.exports.addReviewData = async (req, res) => {
       from: "info@flyweis.technology",
       to: "info@flyweis.technology",
       subject: `${email} sending review: ${subject}`,
-      text: message,
+      text: `Name: ${name}, Phone: ${phone}, Subject: ${subject}, Message: ${message}`,
     };
 
     transporter.sendMail(mail, function (error, info) {
