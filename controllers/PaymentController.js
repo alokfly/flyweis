@@ -2,7 +2,6 @@ const nodemailer = require("nodemailer");
 var XMLHttpRequest = require("xhr2");
 
 module.exports.sendPaymentData = async (req, res) => {
-  const { name, amount, description } = req.body;
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -17,8 +16,8 @@ module.exports.sendPaymentData = async (req, res) => {
     var mail = {
       from: "jatinflyweis@gmail.com",
       to: "jatinflyweis@gmail.com",
-      subject: `${name} paid you amount`,
-      text: `${name} paid you this ${amount}, ${description}`,
+      subject: `${req.body.name} paid you amount`,
+      text: `${req.body.name} paid you this ${req.body.amount}, ${req.body.description}`,
     };
 
     transporter.sendMail(mail, function (error, info) {
@@ -36,8 +35,21 @@ module.exports.sendPaymentData = async (req, res) => {
       console.log(xhr.responseText);
     };
 
-    return res.status(200).json({ msg: "Message send successfully" });
+    let body = req.body.razorpay_order_id + "|" + req.body.razorpay_payment_id;
+    var crypto = require("crypto");
+    var expectedSignature = crypto
+      .createHmac("sha256", "Wok5mJv2F0pa5HKLeXZfUr9r")
+      .update(body.toString())
+      .digest("hex");
+    console.log("sig received ", req.body.razorpay_signature);
+    console.log("sig generated ", expectedSignature);
+    var response = { signatureIsValid: "false" };
+    if (expectedSignature === req.body.razorpay_signature)
+      response = { signatureIsValid: "true" };
+
+    return res.status(200).json({ msg: "Message send successfully", response });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ errors: error });
   }
 };
