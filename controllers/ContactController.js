@@ -15,8 +15,8 @@ module.exports.addContactData = async (req, res) => {
     });
 
     var mail = {
-      from: email,
-      to: "info@flyweis.technology",
+      from: "info@flyweis.technology",
+      to: "aloksaxena755@gmail.com",
       subject: `${email} want to contact you`,
       text: subject,
     };

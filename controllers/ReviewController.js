@@ -15,7 +15,7 @@ module.exports.addReviewData = async (req, res) => {
     });
 
     var mail = {
-      from: req.body.email,
+      from: "info@flyweis.technology",
       to: "info@flyweis.technology",
       subject: `${email} sending review: ${subject}`,
       text: message,
