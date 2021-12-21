@@ -8,14 +8,14 @@ module.exports.sendPaymentData = async (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        user: "jatinflyweis@gmail.com",
-        pass: "tsrjftmowfdmmajs",
+        user: "info@flyweis.technology",
+        pass: "jmymejgfusmnpkez",
       },
     });
 
     var mail = {
-      from: "jatinflyweis@gmail.com",
-      to: "jatinflyweis@gmail.com",
+      from: "info@flyweis.technology",
+      to: "info@flyweis.technology",
       subject: `${req.body.name} paid you amount`,
       text: `${req.body.name} paid you this ${req.body.amount}, ${req.body.description}`,
     };
