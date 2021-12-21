@@ -43,11 +43,18 @@ module.exports.sendPaymentData = async (req, res) => {
       .digest("hex");
     console.log("sig received ", req.body.razorpay_signature);
     console.log("sig generated ", expectedSignature);
-    var response = { signatureIsValid: "false" };
-    if (expectedSignature === req.body.razorpay_signature)
-      response = { signatureIsValid: "true" };
 
-    return res.status(200).json({ msg: "Message send successfully", response });
+    if (expectedSignature === req.body.razorpay_signature) {
+      const response = { signatureIsValid: "true" };
+      return res
+        .status(200)
+        .json({ msg: "Message send successfully", response });
+    } else {
+      const response = { signatureIsValid: "false" };
+      return res
+        .status(200)
+        .json({ msg: "Message send successfully", response });
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).json({ errors: error });
