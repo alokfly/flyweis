@@ -12,6 +12,7 @@ module.exports.sendPaymentData = async (req, res) => {
   } = req.body;
   try {
     const transporter = nodemailer.createTransport({
+      service: "Gmail",
       host: "smtp.gmail.com",
       port: 465,
       secure: true,

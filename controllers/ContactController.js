@@ -5,6 +5,7 @@ module.exports.addContactData = async (req, res) => {
   const { name, email, phone, subject } = req.body;
   try {
     const transporter = nodemailer.createTransport({
+      service: "Gmail",
       host: "smtp.gmail.com",
       port: 465,
       secure: true,
