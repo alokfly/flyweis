@@ -10,14 +10,14 @@ module.exports.addContactData = async (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        user: "info@flyweis.technology",
-        pass: "jmymejgfusmnpkez",
+        user: "rohit@flyweis.technology",
+        pass: "svudoncwkjxibrzc",
       },
     });
 
     var mail = {
-      from: "info@flyweis.technology",
-      to: "info@flyweis.technology",
+      from: "rohit@flyweis.technology",
+      to: "rohit@flyweis.technology",
       subject: `${email} want to contact you`,
       text: `Name: ${name}, Phone: ${phone}, Subject: ${subject}`,
     };
